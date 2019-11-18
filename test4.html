@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #body{
+     aling:0 auto;
+      margin: auto;
+    }
+    .container-div{
+      width: 300px;
+      height: 150px;
+      border:2px solid pink;]
+    color:skyblue；
+    margin:10px auto;
+    }
+    .container-div{
+      border: 1px solid red;
+      margin: 10px auto;
+    }
+  </style>
+
+
+</head>
+<body id="body" >
+<button class="clickBtn" onclick="addDomAppendChild()">通过appendChild添加"</button>
+<div class="container-div" id="container1"> </div>
+<button class="clickBtn" onclick="addDomInnerHTML()">通过innerHTML添加"</button>
+<div class="container-div" id="container2"> </div>
+
+<script>
+  function addDomAppendChild() {
+    var container = document.getElementById("container1");
+
+    var input = document.createElement("input");
+    input.id ="btn";
+    input.type = "button";
+    input.value ="按钮";
+    container.appendChild(input);
+
+  }
+  function addDomInnerHTML() {
+    var container = document.getElementById("container2");
+    container.innerHTML = "<input id ='btn' type='button'value='按钮'/>"
+
+  }
+</script>
+</body>
+</html>
