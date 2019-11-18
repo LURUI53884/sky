@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style type="text/css">
+    #all{
+      text-align: center;
+    }
+    .table{
+      border: none;
+      text-align: center;
+    }
+    button{
+      width:80px;
+      height:35px;
+      line-height: 35px;
+      outline: none;
+      border-radius: 5px;
+      border: 1px solid lavenderblush;
+      background:red;
+    }
+    table{
+      width: 500px;
+      border-collapse: collapse;
+    }
+    table tr:hover{background: #b3d4fc}
+    .content{
+      margin: 20px auto;
+      text-align: center;
+      /*  隐藏元素*/
+      display: none;
+      /*visibility: hidden;*/
+    }
+    .content div{
+      margin: 10px 0px;
+    }
+    .content input[type="text"]{
+      width: 180px;
+      height: 25px;
+      text-indent: 0.7em;
+      border: 1px solid #ccc;
+      outline: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<div id="all">
+  <button id="add" onclick="add()">添加</button>
+  <button id="del" onclick="delDom()">删除</button>
+  <div class="content" id="content">
+    <div id="id">
+      <span>序号：</span>
+      <input type="text" id="idInput">
+    </div>
+    <div id="number">
+      <span>学号：</span>
+      <input type="text" id="numberInput">
+    </div>
+    <div id="name">
+      <span>姓名：</span>
+      <input type="text" id="nameInput">
+    </div>
+    <div id="sex">
+      <span>性别：</span>
+      <input type="radio" checked="checked" name="sex">男
+      <input type="radio" name="sex">女
+    </div>
+    <div id="tel">
+      <span>电话：</span>
+      <input type="text" id="telInput">
+    </div>
+    <div class="opt-btn-div">
+      <button onclick="addDom()">确定</button>
+      <button onclick="cancelAdd()">取消</button>
+    </div>
+  </div>
+  <table id="table" border="1" align="center">
+    <tbody id="tbody">
+    <tr>
+      <td>序号</td>
+      <td>学号</td>
+      <td>姓名</td>
+      <td>性别</td>
+      <td>电话</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>001</td>
+      <td>张三</td>
+      <td>男</td>
+      <td>13145671234</td>
+    </tr>
+    <tr id="aaa">
+      <td>2</td>
+      <td>002</td>
+      <td>李四</td>
+      <td>女</td>
+      <td>13550448479</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script>
+  function add() {
+    var dom = document.getElementById("content")
+    dom.style.display = "block";
+  }
+  function cancelAdd() {
+    var dom = document.getElementById("content")
+    dom.style.display = "none";
+  }
+  function addDom() {
+    var n = 5;
+    var tdArr = [];
+    for (var i=0;i<n;i++)
+    {
+      var td =document.createElement("td");
+      tdArr.push(td);
+    }
+    var idInput = document.getElementById("idInput");
+    var numberInput = document.getElementById("numberInput");
+    var nameInput = document.getElementById("nameInput");
+    var telInput = document.getElementById("telInput");
+
+
+    var txt1=document.createTextNode(idInput.value);
+    var txt2=document.createTextNode(numberInput.value);
+    var txt3=document.createTextNode(nameInput.value);
+    //定义性别
+    var txt4
+    var sexInputs = document.getElementsByName("sex");
+    if (sexInputs[0].checked){
+      txt4 = document.createTextNode("男");
+    }else {
+      txt4 = document.createTextNode("女");
+    }
+    var txt5=document.createTextNode(telInput.value);
+
+    var txtArr = [txt1,txt2,txt3,txt4,txt5];
+    for (var j=0;j<n;j++)
+    {
+      tdArr[j].appendChild(txtArr[j]);
+    }
+    var tr = document.createElement("tr");
+    for(var k=0;k<n;k++)
+    {
+      tr.appendChild(tdArr[k]);
+    }
+    var tbody = document.getElementById("tbody");
+    tbody.appendChild(tr);
+
+    cancelAdd();
+  }
+  function delDom() {
+    var tbody = document.getElementById("tbody");
+    var trs = document.getElementsByTagName("tr");
+    console.log(trs.length);
+    if (trs.length<=1)
+    {
+      alert("null");
+    }
+    else{
+      tbody.removeChild(trs[trs.length-1]);
+    }
+  }
+</script>
+</body>
+</html>
